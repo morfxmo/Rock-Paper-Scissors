@@ -1,11 +1,10 @@
 function getComputerChoice () {
     let computerChoice;
-    let rand = Math.random();
+    let rand = Math.floor(Math.random() * 3);
 
-    // This is a bit off but anything works for now 
-    if (rand <= 0.333)
+    if (rand == 0)
         computerChoice = "rock";
-    else if (rand <= 0.666)
+    else if (rand == 1)
         computerChoice = "paper";
     else 
         computerChoice = "sissors"
