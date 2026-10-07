@@ -13,29 +13,39 @@ function getComputerChoice () {
     return computerChoice;
 }
 
-function getHumanChoice () {
-    let humanChoice = window.prompt("Enter Your Choice :");
+function getHumanChoice (round) {
+    let humanChoice = window.prompt(`Round ${round}: \nEnter Your Choice`);
     humanChoice.toLowerCase();
     return humanChoice;
 }
 
-let humanScore = 0 , computerScore = 0;
-function playRound (humanChoice , computerChoice) {
-    console.log(`Computer Choice : ${computerChoice}`);
-    console.log(`Human Choice : ${humanChoice}`);
+function playGame () {
+    let humanScore = 0 , computerScore = 0;
+    function scoreInfo () {
+        let scoreInfoReturn = `\nScore : \nYou : ${humanScore} | Computer : ${computerScore}`;
+        return scoreInfoReturn;
+    }
 
-    // Human win conditions
-    if (humanChoice == "rock" && computerChoice == "sissors")
-        humanScore++ , alert("You did it!");
-    else if (humanChoice == "paper" && computerChoice == "rock")
-        humanScore++ , alert("You did it!");
-    else if (humanChoice == "sissors" && computerChoice == "paper")
-        humanScore++ , alert("You did it!");
-    else if (humanChoice == computerChoice)
-        alert("Draw!")
-    else 
-        computerScore++ , alert("Computer is smart >_<"); // otherwise computer wins
+    function playRound (humanChoice , computerChoice) {
+        // Human win conditions
+        let humanWins = `You did it! , Computer chose ${computerChoice}`;
+        if (humanChoice == "rock" && computerChoice == "sissors")
+            humanScore++ , alert(humanWins + scoreInfo());
+        else if (humanChoice == "paper" && computerChoice == "rock")
+            humanScore++ , alert(humanWins + scoreInfo());
+        else if (humanChoice == "sissors" && computerChoice == "paper")
+            humanScore++ , alert(humanWins + scoreInfo());
+        else if (humanChoice == computerChoice)
+            alert("Draw!" + scoreInfo())
+        else 
+            computerScore++ , alert(`Computer chose ${computerChoice} , You lose!` + scoreInfo()); // otherwise computer wins
+    }
+
+    alert("The game starts here! consisting of 5 rounds");
+    for (let i = 0 ; i < 5 ; i++)
+        playRound(getHumanChoice(i + 1) , getComputerChoice());
+    
+    alert(`Final score : \nYou : ${humanScore} | Computer : ${computerScore}`);
 }
 
-playRound(getHumanChoice() , getComputerChoice());
-console.log(`Test Round : H ${humanScore} | C ${computerScore}`)
+playGame();
