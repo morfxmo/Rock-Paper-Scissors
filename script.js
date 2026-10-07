@@ -1,16 +1,16 @@
 function getComputerChoice () {
-    let ret;
+    let computerChoice;
     let rand = Math.random();
 
     // This is a bit off but anything works for now 
     if (rand <= 0.333)
-        ret = "rock";
+        computerChoice = "rock";
     else if (rand <= 0.666)
-        ret = "paper";
+        computerChoice = "paper";
     else 
-        ret = "sissors"
+        computerChoice = "sissors"
 
-    return ret;
+    return computerChoice;
 }
 
 function getHumanChoice () {
@@ -19,5 +19,23 @@ function getHumanChoice () {
     return humanChoice;
 }
 
-console.log(`Computer Choice : ${getComputerChoice()}`);
-console.log(`Human Choice : ${getHumanChoice()}`);
+let humanScore = 0 , computerScore = 0;
+function playRound (humanChoice , computerChoice) {
+    console.log(`Computer Choice : ${computerChoice}`);
+    console.log(`Human Choice : ${humanChoice}`);
+
+    // Human win conditions
+    if (humanChoice == "rock" && computerChoice == "sissors")
+        humanScore++ , alert("You did it!");
+    else if (humanChoice == "paper" && computerChoice == "rock")
+        humanScore++ , alert("You did it!");
+    else if (humanChoice == "sissors" && computerChoice == "paper")
+        humanScore++ , alert("You did it!");
+    else if (humanChoice == computerChoice)
+        alert("Draw!")
+    else 
+        computerScore++ , alert("Computer is smart >_<"); // otherwise computer wins
+}
+
+playRound(getHumanChoice() , getComputerChoice());
+console.log(`Test Round : H ${humanScore} | C ${computerScore}`)
