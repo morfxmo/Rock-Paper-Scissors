@@ -4,13 +4,20 @@ function getComputerChoice () {
 
     // This is a bit off but anything works for now 
     if (rand <= 0.333)
-        ret = "Rock";
+        ret = "rock";
     else if (rand <= 0.666)
-        ret = "Paper";
+        ret = "paper";
     else 
-        ret = "Sissors"
+        ret = "sissors"
 
     return ret;
 }
 
-console.log(getComputerChoice());
+function getHumanChoice () {
+    let humanChoice = window.prompt("Enter Your Choice :");
+    humanChoice.toLowerCase();
+    return humanChoice;
+}
+
+console.log(`Computer Choice : ${getComputerChoice()}`);
+console.log(`Human Choice : ${getHumanChoice()}`);
