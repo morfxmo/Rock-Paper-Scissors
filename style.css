@@ -52,10 +52,9 @@
 .log {
     background-color: black;
     color: white;
-    height: 68px;
+    height: 100px;
     font-size: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
 }
