@@ -23,8 +23,8 @@ function getHumanChoice () {
     let humanChoice = "bleh";
 
     choices.addEventListener("click" , (event) => {
-        let clickedBtn = event.targt.id;
-        console.log("clicked!");
+        let clickedBtn = event.target.id;
+        console.log(clickedBtn);
 
         if (clickedBtn === "rock-btn") humanChoice = "rock";
         if (clickedBtn === "paper-btn") humanChoice = "paper";
