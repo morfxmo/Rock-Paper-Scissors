@@ -7,7 +7,7 @@ function getComputerChoice () {
     else if (rand == 1)
         computerChoice = "paper";
     else 
-        computerChoice = "sissors"
+        computerChoice = "scissors"
 
     return computerChoice;
 }
@@ -19,6 +19,7 @@ function getHumanChoice (round) {
 }
 
 function playGame () {
+    console.log("in play!");
     let humanScore = 0 , computerScore = 0;
     function scoreInfo () {
         let scoreInfoReturn = `\nScore : \nYou : ${humanScore} | Computer : ${computerScore}`;
@@ -28,11 +29,11 @@ function playGame () {
     function playRound (humanChoice , computerChoice) {
         // Human win conditions
         let humanWins = `You did it! , Computer chose ${computerChoice}`;
-        if (humanChoice == "rock" && computerChoice == "sissors")
+        if (humanChoice == "rock" && computerChoice == "scissors")
             humanScore++ , alert(humanWins + scoreInfo());
         else if (humanChoice == "paper" && computerChoice == "rock")
             humanScore++ , alert(humanWins + scoreInfo());
-        else if (humanChoice == "sissors" && computerChoice == "paper")
+        else if (humanChoice == "scissors" && computerChoice == "paper")
             humanScore++ , alert(humanWins + scoreInfo());
         else if (humanChoice == computerChoice)
             alert("Draw!" + scoreInfo())
@@ -40,9 +41,9 @@ function playGame () {
             computerScore++ , alert(`Computer chose ${computerChoice} , You lose!` + scoreInfo()); // otherwise computer wins
     }
 
-    alert("The game starts here! consisting of 5 rounds");
-    for (let i = 0 ; i < 5 ; i++)
-        playRound(getHumanChoice(i + 1) , getComputerChoice());
+    let roundNum = 1;
+    while (humanScore < 5 && computerScore < 5)
+        playRound(getHumanChoice(roundNum++) , getComputerChoice());
     
     alert(`Final score : \nYou : ${humanScore} | Computer : ${computerScore}`);
 }
