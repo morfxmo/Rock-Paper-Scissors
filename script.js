@@ -12,40 +12,60 @@ function getComputerChoice () {
     return computerChoice;
 }
 
-function getHumanChoice (round) {
-    let humanChoice = window.prompt(`Round ${round}: \nEnter Your Choice`);
-    humanChoice.toLowerCase();
+const roundCounter = document.querySelector(".counter");
+const humanScoreBoard = document.querySelector(".human-score-val");
+const computerScoreBoard = document.querySelector(".computer-score-val");
+const choices = document.querySelector(".choices");
+const log = document.querySelector(".log");
+let roundNum = 1;
+
+function getHumanChoice () {
+    let humanChoice = "bleh";
+
+    choices.addEventListener("click" , (event) => {
+        let clickedBtn = event.targt.id;
+        console.log("clicked!");
+
+        if (clickedBtn === "rock-btn") humanChoice = "rock";
+        if (clickedBtn === "paper-btn") humanChoice = "paper";
+        if (clickedBtn === "scissors-btn") humanChoice = "scissors";
+    })
+
+    log.textContent = "Waiting for your choice...";
+    
     return humanChoice;
 }
 
 function playGame () {
     console.log("in play!");
     let humanScore = 0 , computerScore = 0;
-    function scoreInfo () {
-        let scoreInfoReturn = `\nScore : \nYou : ${humanScore} | Computer : ${computerScore}`;
-        return scoreInfoReturn;
-    }
 
     function playRound (humanChoice , computerChoice) {
         // Human win conditions
         let humanWins = `You did it! , Computer chose ${computerChoice}`;
+        let innerLog = "";
         if (humanChoice == "rock" && computerChoice == "scissors")
-            humanScore++ , alert(humanWins + scoreInfo());
+            humanScore++ , innerLog = humanWins;
         else if (humanChoice == "paper" && computerChoice == "rock")
-            humanScore++ , alert(humanWins + scoreInfo());
+            humanScore++ , innerLog = humanWins;
         else if (humanChoice == "scissors" && computerChoice == "paper")
-            humanScore++ , alert(humanWins + scoreInfo());
+            humanScore++ , innerLog = humanWins;
         else if (humanChoice == computerChoice)
-            alert("Draw!" + scoreInfo())
+            innerLog = "Draw!";
         else 
-            computerScore++ , alert(`Computer chose ${computerChoice} , You lose!` + scoreInfo()); // otherwise computer wins
+            computerScore++ , innerLog = `Computer chose ${computerChoice} , You lose!`; // otherwise computer wins
+
+        humanScoreBoard.textContent = humanScore;
+        computerScoreBoard.textContent = computerScore;
+        log.textContent = innerLog;
+        roundCounter.textContent = ++roundNum;
     }
 
-    let roundNum = 1;
     while (humanScore < 5 && computerScore < 5)
-        playRound(getHumanChoice(roundNum++) , getComputerChoice());
-    
-    alert(`Final score : \nYou : ${humanScore} | Computer : ${computerScore}`);
+        playRound(getHumanChoice() , getComputerChoice());
+
+    if (humanScore == 5) log.textContent = "Congrats!!!, you did it!";
+    else log.textContent = "You lost to machine, bruh";
 }
 
 playGame();
