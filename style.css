@@ -11,7 +11,7 @@
 
 .score {
     flex: 1;
-    height: 200px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,8 +33,8 @@
 }
 
 .computer-score-val , .human-score-val {
-    margin-top: 8px;
-    font-size: 100px;
+    margin-top: 12px;
+    font-size: 150px;
 }
 
 .choices {
@@ -53,7 +53,7 @@
     background-color: black;
     color: white;
     height: 72px;
-    font-size: 24px;
+    font-size: 32px;
     text-align: center;
     padding: 12px;
 }
