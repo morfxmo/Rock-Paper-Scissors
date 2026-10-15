@@ -42,7 +42,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 36px;
+    font-size: 28px;
 }
 
 .choices img {
@@ -52,8 +52,8 @@
 .log {
     background-color: black;
     color: white;
-    height: 72px;
-    font-size: 32px;
+    height: 60px;
+    font-size: 26px;
     text-align: center;
     padding: 12px;
 }
