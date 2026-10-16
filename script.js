@@ -34,8 +34,17 @@ function handler (event) {
 choices.addEventListener("click" , handler)
 
 function playRound (humanChoice , computerChoice) {
+
+    let innerImg;
+    if (computerChoice == "rock") 
+        innerImg = `<img src="resources/rock.webp" style="width: 25px; height: auto; padding: 5px;">`;
+    else if (computerChoice == "paper")
+        innerImg = `<img src="resources/paper.webp" style="width: 25px; height: auto; padding: 5px;">`;
+    else 
+        innerImg = `<img src="resources/scissors.webp" style="width: 25px; height: auto; padding: 5px;">`;
+
     // Human win conditions
-    let humanWins = `You did it! , Computer chose ${computerChoice}`;
+    let humanWins = `You did it! , Computer chose ${innerImg}`;
     let innerLog = "";
     if (humanChoice == "rock" && computerChoice == "scissors")
         humanScore++ , innerLog = humanWins;
@@ -46,11 +55,11 @@ function playRound (humanChoice , computerChoice) {
     else if (humanChoice == computerChoice)
         innerLog = "Draw!";
     else 
-        computerScore++ , innerLog = `Computer chose ${computerChoice} , You lose!`; // otherwise computer wins
+        computerScore++ , innerLog = `Computer chose ${innerImg} , You lose!`; // otherwise computer wins
 
     humanScoreBoard.textContent = humanScore;
     computerScoreBoard.textContent = computerScore;
-    log.textContent = innerLog;
+    log.innerHTML = innerLog;
     roundCounter.textContent = ++roundNum;
 
     if (humanScore == 5) log.textContent = "Congrats!!!, you did it!" , choices.removeEventListener("click" , handler);
